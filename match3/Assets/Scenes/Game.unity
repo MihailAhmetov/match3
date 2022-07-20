@@ -215,6 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 231354600}
+  - component: {fileID: 231354601}
   m_Layer: 0
   m_Name: Match Finder
   m_TagString: Untagged
@@ -236,6 +237,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &231354601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231354599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d930ba6d64bc44a91c82f11debaf9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &960376237
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,11 +283,11 @@ MonoBehaviour:
   _backgroundTileTemplate: {fileID: 8962800808244230628, guid: 3e606b1be695ede41a2ae5e01c8b3dd2,
     type: 3}
   _availableGemTemplates:
-  - {fileID: 4201935685909816010, guid: 690deccc832d755498fb6e27f0265e27, type: 3}
-  - {fileID: 6411961180834238939, guid: d0fd6aa3c9251c84996bf0d88b27ca22, type: 3}
-  - {fileID: 6904407349746743105, guid: 1638968d4588a9944a86e6bd68942ae3, type: 3}
-  - {fileID: 2164999441261567430, guid: 23d23508b8959c541aa7afb3581c4493, type: 3}
-  - {fileID: 6833345266950866355, guid: 6c6988de040fb7044b9053b6edd82e8d, type: 3}
+  - {fileID: 5268817142648761764, guid: 690deccc832d755498fb6e27f0265e27, type: 3}
+  - {fileID: 3882899727853811726, guid: 22762219acd2f744f82deb15ef108c82, type: 3}
+  - {fileID: 2893001540341593450, guid: 6164c19aeeaf8f74591cdf1baad6d6a4, type: 3}
+  - {fileID: 7153708251321979884, guid: d95bd0c3acdf6be43a8d8fca1e6a891d, type: 3}
+  - {fileID: 7129289656831532561, guid: 63b85afac05f2ec4f9aa37989aaab7f3, type: 3}
 --- !u!4 &960376239
 Transform:
   m_ObjectHideFlags: 0
