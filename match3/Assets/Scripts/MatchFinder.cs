@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MatchFinder : MonoBehaviour
 {
     private Board _board;
-
+    [SerializeField] private List<Gem> _currentMatches = new List<Gem>(); 
     private void Awake()
     {
         _board = FindObjectOfType<Board>();
@@ -26,6 +27,9 @@ public class MatchFinder : MonoBehaviour
                 }
             }
         }
+
+        if(_currentMatches.Count > 0)
+            _currentMatches = _currentMatches.Distinct().ToList();
     }
 
     private void FindHorizontalMatches(int i, int j, Gem currentGem)
@@ -39,9 +43,8 @@ public class MatchFinder : MonoBehaviour
             {
                 if (leftGem.Type == currentGem.Type && rightGem.Type == currentGem.Type)
                 {
-                    MatchGem(currentGem);
-                    MatchGem(leftGem);
-                    MatchGem(rightGem);
+                    MatchGems(currentGem, leftGem, rightGem);
+                    AddCurrentMatches(currentGem, leftGem, rightGem);
                 }
             }
         }
@@ -58,17 +61,25 @@ public class MatchFinder : MonoBehaviour
             {
                 if (aboveGem.Type == currentGem.Type && belowGem.Type == currentGem.Type)
                 {
-                    MatchGem(currentGem);
-                    MatchGem(aboveGem);
-                    MatchGem(belowGem);
+                    MatchGems(currentGem, aboveGem, belowGem);
+                    AddCurrentMatches(currentGem, aboveGem, belowGem);
                 }
             }
         }
     }
 
-    private void MatchGem(Gem gem)
+    private void AddCurrentMatches(Gem gem1, Gem gem2, Gem gem3)
     {
-        gem.IsMatched = true;
+        _currentMatches.Add(gem1);
+        _currentMatches.Add(gem2);
+        _currentMatches.Add(gem3);
+    }
+
+    private void MatchGems(Gem gem1, Gem gem2, Gem gem3)
+    {
+        gem1.IsMatched = true;
+        gem2.IsMatched = true;
+        gem3.IsMatched = true;
     }
 
 }
