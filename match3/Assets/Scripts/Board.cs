@@ -47,14 +47,23 @@ public class Board : MonoBehaviour
                 backgroundTile.transform.parent = this.transform;
                 backgroundTile.name = $"BG Tile - {i}, {j}";
 
-                SpawnGem(new Vector2Int(i, j));
+                int gemToUseIndex = Random.Range(0, _availableGemTemplates.Length);
+                
+                int iteraions = 0;
+                while (CheckStartMatches(new Vector2Int(i,j), _availableGemTemplates[gemToUseIndex]))
+                {
+                    gemToUseIndex = Random.Range(0, _availableGemTemplates.Length);
+                    iteraions++;
+                    //Debug.Log(iterations);
+                }
+
+                SpawnGem(new Vector2Int(i, j), gemToUseIndex);
             }
         }
     }
 
-    private void SpawnGem(Vector2Int position)
+    private void SpawnGem(Vector2Int position, int gemToUseIndex)
     {
-        int gemToUseIndex = Random.Range(0, _availableGemTemplates.Length);
         Gem gem = Instantiate(_availableGemTemplates[gemToUseIndex], new Vector3(position.x, position.y, 0f), Quaternion.identity);
 
         gem.transform.parent = this.transform;
@@ -64,4 +73,25 @@ public class Board : MonoBehaviour
 
         gem.SetupGem(position, this);
     }
+
+    private bool CheckStartMatches(Vector2Int positionToCheck, Gem gemToCheck)
+    {
+        if (positionToCheck.x > 1)
+        {
+            if (_gemsOnBoard[positionToCheck.x - 1, positionToCheck.y].Type == gemToCheck.Type &&
+                    _gemsOnBoard[positionToCheck.x - 2, positionToCheck.y].Type == gemToCheck.Type)
+                return true;
+        }
+
+        if (positionToCheck.y > 1)
+        {
+            if (_gemsOnBoard[positionToCheck.x, positionToCheck.y - 1].Type == gemToCheck.Type &&
+                    _gemsOnBoard[positionToCheck.x, positionToCheck.y - 2].Type == gemToCheck.Type)
+                return true;
+        }
+
+        return false;
+    }
+
+   
 }

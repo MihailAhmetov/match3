@@ -6,7 +6,8 @@ using UnityEngine;
 public class MatchFinder : MonoBehaviour
 {
     private Board _board;
-    [SerializeField] private List<Gem> _currentMatches = new List<Gem>(); 
+    private List<Gem> _currentMatches = new List<Gem>(); 
+   
     private void Awake()
     {
         _board = FindObjectOfType<Board>();
